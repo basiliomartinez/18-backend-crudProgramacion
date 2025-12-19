@@ -16,6 +16,6 @@ export default class Server {
   }
 
   listen(){
-    this.app.listen(this.port, ()=> console.info(`El servidor se esta ejecutando en: ${this.port}`))
+    this.app.listen(this.port, ()=> console.info(`El servidor se esta ejecutando en los puerto: ${this.port}`))
   }
 }
