@@ -29,3 +29,21 @@ export const listarServicios = async (req, res) => {
       .json({ mensaje: "Ocurrio un error al intentar listar un servicio" });
   }
 };
+
+export const obtenerServicioId = async (req, res) => {
+  try {
+    console.log(req.params.id);
+    const servicioBuscado = await Servicio.findById(req.params.id);
+    if (!servicioBuscado) {
+      return res
+        .status(404)
+        .json({ mensaje: "No se encontro el servicio con el Id enviado" });
+    }
+    res.status(200).json(servicioBuscado);
+  } catch (error) {
+    console.error(error);
+    res.status(500).json({
+      mensaje: "Ocurrio un error al intentar buscar el servicio por Id",
+    });
+  }
+};
