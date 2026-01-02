@@ -1,5 +1,5 @@
 import { Router } from "express";
-import { crearServicio, listarServicios, obtenerServicioId, prueba } from "../controllers/servicios.controllers.js";
+import { crearServicio, editarServicio, listarServicios, obtenerServicioId, prueba } from "../controllers/servicios.controllers.js";
 
 const router = Router()
 //aqui diseñamos todas las rutas para trabajar con los servicios
@@ -7,6 +7,6 @@ const router = Router()
 
 router.route("/test").get(prueba)
 router.route('/').post(crearServicio).get(listarServicios)
-router.route('/:id').get(obtenerServicioId)
+router.route('/:id').get(obtenerServicioId).put(editarServicio)
 
 export default router
