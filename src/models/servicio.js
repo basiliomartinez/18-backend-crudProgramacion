@@ -16,17 +16,15 @@ const servicioSchema = new Schema({
     max: 1000000,
   },
 
-  imagen: {
-    type: String,
-    required: true,
-    validate: {
-      validator: (valor) => {
-        return /^(https?:\/\/)?([\da-z\.-]+)\.([a-z\.]{2,6})([\/\w \.-]*)*\/?(\.(jpg|jpeg|png|webp))$/.test(
-          valor
-        );
-      },
-    },
+imagen: {
+  type: String,
+  required: true,
+  validate: {
+    validator: (valor) => /^https?:\/\/.+/i.test(valor),
+    message: "La imagen debe ser una URL válida (http/https).",
   },
+},
+
   categoria: {
     type: String,
     required: true,
