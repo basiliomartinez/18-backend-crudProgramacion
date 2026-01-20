@@ -7,8 +7,8 @@ import {
   obtenerServicioId,
   prueba,
 } from "../controllers/servicios.controllers.js";
-import validacionServicio from "../../middlewares/validacionServicio.js";
-import validacionIdServicio from "../../middlewares/validacionIdServicio.js";
+import validacionServicio from "../middlewares/validacionServicio.js";
+import validacionIdServicio from "../middlewares/validacionIdServicio.js";
 
 const router = Router();
 //aqui diseñamos todas las rutas para trabajar con los servicios
