@@ -21,7 +21,7 @@ router
   .get(listarServicios);
 router
   .route("/:id")
-  .get(obtenerServicioId)
+  .get(validacionIdServicio, obtenerServicioId)
   .put([validacionIdServicio, validacionServicio], editarServicio)
   .delete(validacionIdServicio, borrarServicio);
 
