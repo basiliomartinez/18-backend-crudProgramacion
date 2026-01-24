@@ -3,22 +3,20 @@
   "version": "1.0.0",
   "description": "Backend del proyecto crud de programacion, catalogo de servivios de programacion",
   "main": "index.js",
+  "type": "module",
+  "keywords": ["middlewares", "routes", "bd mongo"],
+  "author": "Basilio Martinez",
+  "license": "ISC",
   "scripts": {
     "start": "node index.js",
     "dev": "node --env-file .env --watch index.js"
   },
-  "keywords": [
-    "middlewares",
-    "routes",
-    "bd mongo"
-  ],
-  "author": "Basilio Martinez",
-  "license": "ISC",
-  "type": "module",
   "dependencies": {
+    "bcrypt": "^6.0.0",
     "cors": "^2.8.5",
     "express": "^5.2.1",
     "express-validator": "^7.3.1",
+    "jsonwebtoken": "^9.0.3",
     "mongoose": "^9.0.2",
     "morgan": "^1.10.1"
   }
