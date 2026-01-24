@@ -20,4 +20,17 @@ export const crearUsuario = async (req, res) => {
       .json({ mensaje: "Ocurrio un error al intentar crear un usuario" });
   }
 };
-export const listarUsuario = (req, res) => {};
+export const listarUsuarios = async (req, res) => {
+  try {
+    const listarUsuarios = await Usuario.find();
+    if (listarUsuarios.length === 0) {
+      return res.status(404).json({ mensaje: "No hay usuarios registrados" });
+    }
+    res.status(200).json(listarUsuarios);
+  } catch (error) {
+    console.error();
+    res
+      .status(500)
+      .json({ mensaje: "Ocurrio un error al intentar listar un usuario" });
+  }
+};
