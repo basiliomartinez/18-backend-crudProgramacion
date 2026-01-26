@@ -1,0 +1,14 @@
+import jwt from "jsonwebtoken";
+
+const generarJWT = (id) => {
+  try {
+    const payload = { id };
+    const token = jwt.sign(payload, process.env.SECRETJWT, { expiresIn: "2" });
+    return token;
+  } catch (error) {
+    console.error(error);
+    throw new Error("Error al generar el token");
+  }
+};
+
+export default generarJWT;
