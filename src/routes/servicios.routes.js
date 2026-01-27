@@ -9,6 +9,7 @@ import {
 } from "../controllers/servicios.controllers.js";
 import validacionServicio from "../middlewares/validacionServicio.js";
 import validacionIdServicio from "../middlewares/validacionIdServicio.js";
+import verificarJWT from "../middlewares/verificarJWT.js";
 
 const router = Router();
 //aqui diseñamos todas las rutas para trabajar con los servicios
@@ -17,12 +18,12 @@ const router = Router();
 router.route("/test").get(prueba);
 router
   .route("/")
-  .post([validacionServicio], crearServicio)
+  .post([verificarJWT, validacionServicio], crearServicio)
   .get(listarServicios);
 router
   .route("/:id")
   .get(validacionIdServicio, obtenerServicioId)
-  .put([validacionIdServicio, validacionServicio], editarServicio)
-  .delete(validacionIdServicio, borrarServicio);
+  .put([verificarJWT, validacionIdServicio, validacionServicio], editarServicio)
+  .delete(verificarJWT, validacionIdServicio, borrarServicio);
 
 export default router;
