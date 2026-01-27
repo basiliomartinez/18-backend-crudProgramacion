@@ -20,8 +20,23 @@ const verificarJWT = (req, res, next) => {
     next();
   } catch (error) {
     console.error(error);
-    res.status(401).json({ mensaje: "Token no valido", error: error.message });
+    console.error("Error en JWT:", error.name);
+    if (error.name === "TokenExpiredError") {
+      return res.status(401).json({
+        mensaje: "Tu sesión ha expirado, por favor vuelve a iniciar sesión.",
+      });
+    }
+
+    if (error.name === "JsonWebTokenError") {
+      return res.status(401).json({
+        mensaje: "Token inválido o malformado.",
+      });
+    }
+
+    res.status(401).json({
+      mensaje: "No se pudo autenticar el token.",
+    });
   }
 };
 
-export default verificarJWT
+export default verificarJWT;
