@@ -37,15 +37,15 @@ const validacionServicio = [
     })
     .withMessage("El precio debe estar entre $50 y $1000000"),
 
-  body("imagen")
+  /*body("imagen")
     .notEmpty()
-    .withMessage("La imagen debe ser un dato obligatorio")
-    .isString()
+    .withMessage("La imagen debe ser un dato obligatorio"),
+  .isString()
     .withMessage("La imagen debe ser una cadena de texto")
     .matches(/^(https?:\/\/.*\.(?:jpg|jpeg|png|webp))(?:\?.*)?$/)
     .withMessage(
       "La imagen debe ser una url valida que termine con .jpg, .jpeg, .png o .webp",
-    ),
+    ),*/
 
   body("categoria")
     .notEmpty()
