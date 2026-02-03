@@ -17,11 +17,11 @@ export const crearServicio = async (req, res) => {
       imagenUrl = resultado.secure_url;
     } else {
       // agregar una imagen por defecto imagenUrl =''
+      imagenUrl= 'https://images.pexels.com/photos/5652023/pexels-photo-5652023.jpeg'
     }
-
       req.body.imagen = imagenUrl
-//resto del controlador
 
+//resto del controlador
     const servicioNuevo = new Servicio(req.body);
     await servicioNuevo.save();
     res.status(201).json({ mensaje: "El servicio fue creado correctamente" });
