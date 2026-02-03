@@ -4,7 +4,11 @@
   "description": "Backend del proyecto crud de programacion, catalogo de servivios de programacion",
   "main": "index.js",
   "type": "module",
-  "keywords": ["middlewares", "routes", "bd mongo"],
+  "keywords": [
+    "middlewares",
+    "routes",
+    "bd mongo"
+  ],
   "author": "Basilio Martinez",
   "license": "ISC",
   "scripts": {
@@ -13,11 +17,13 @@
   },
   "dependencies": {
     "bcrypt": "^6.0.0",
+    "cloudinary": "^2.9.0",
     "cors": "^2.8.5",
     "express": "^5.2.1",
     "express-validator": "^7.3.1",
     "jsonwebtoken": "^9.0.3",
     "mongoose": "^9.0.2",
-    "morgan": "^1.10.1"
+    "morgan": "^1.10.1",
+    "multer": "^2.0.2"
   }
 }
