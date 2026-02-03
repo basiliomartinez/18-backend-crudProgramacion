@@ -9,19 +9,20 @@ export const prueba = (req, res) => {
 export const crearServicio = async (req, res) => {
   try {
     //Subir la imagen a cloudinary
-     let imagenUrl = "";
+    let imagenUrl = "";
 
     if (req.file) {
       const resultado = await subirImagenACloudinary(req.file.buffer);
-      console.log(resultado)
+      console.log(resultado);
       imagenUrl = resultado.secure_url;
     } else {
       // agregar una imagen por defecto imagenUrl =''
-      imagenUrl= 'https://images.pexels.com/photos/5652023/pexels-photo-5652023.jpeg'
+      imagenUrl =
+        "https://images.pexels.com/photos/5652023/pexels-photo-5652023.jpeg";
     }
-      req.body.imagen = imagenUrl
+    req.body.imagen = imagenUrl;
 
-//resto del controlador
+    //resto del controlador
     const servicioNuevo = new Servicio(req.body);
     await servicioNuevo.save();
     res.status(201).json({ mensaje: "El servicio fue creado correctamente" });
@@ -63,46 +64,54 @@ export const obtenerServicioId = async (req, res) => {
   }
 };
 
-export const editarServicio= async(req, res)=>{
-    try{
-const servicioBuscado = await Servicio.findById(req.params.id)
-   if (!servicioBuscado) {
+export const editarServicio = async (req, res) => {
+  try {
+    const servicioBuscado = await Servicio.findById(req.params.id);
+
+    if (!servicioBuscado) {
       return res
         .status(404)
         .json({ mensaje: "No se encontro el servicio con el Id enviado" });
     }
-// aqui queremos editar el servicio
-await Servicio.updateOne({_id: req.params.id}, req.body)
- res.status(200).json({
+
+    // Si viene una imagen nueva, la subimos
+    if (req.file) {
+      const resultado = await subirImagenACloudinary(req.file.buffer);
+      req.body.imagen = resultado.secure_url;
+    } else {
+      // Si no viene imagen nueva, mantenemos la existente
+      req.body.imagen = servicioBuscado.imagen;
+    }
+
+    await Servicio.updateOne({ _id: req.params.id }, req.body);
+
+    res.status(200).json({
       mensaje: "El servicio fue actualizado correctamente",
     });
-    }catch(error){
-            console.error(error);
-    res.status(500).json({   
+  } catch (error) {
+    console.error(error);
+    res.status(500).json({
       mensaje: "Ocurrio un error al intentar editar un servicio",
     });
+  }
+};
 
-    }
-}
-
-export const borrarServicio= async(req, res)=>{
-    try{
-const servicioBorrado = await Servicio.findByIdAndDelete(req.params.id)
-   if (!servicioBorrado) {
+export const borrarServicio = async (req, res) => {
+  try {
+    const servicioBorrado = await Servicio.findByIdAndDelete(req.params.id);
+    if (!servicioBorrado) {
       return res
         .status(404)
         .json({ mensaje: "No se encontro el servicio con el Id enviado" });
     }
 
- res.status(200).json({
+    res.status(200).json({
       mensaje: "El servicio fue borrado correctamente",
     });
-    }catch(error){
-            console.error(error);
-    res.status(500).json({   
+  } catch (error) {
+    console.error(error);
+    res.status(500).json({
       mensaje: "Ocurrio un error al intentar editar un servicio",
     });
-
-    }
-
-}
+  }
+};
