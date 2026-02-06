@@ -25,7 +25,7 @@ router
 router
   .route("/:id")
   .get(validacionIdServicio, obtenerServicioId)
-  .put([verificarJWT, validacionIdServicio, validacionServicio], editarServicio)
+  .put([verificarJWT, upload.single('imagen'),validacionIdServicio, validacionServicio], editarServicio)
   .delete(verificarJWT, validacionIdServicio, borrarServicio);
 
 export default router;
